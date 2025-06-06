@@ -41,3 +41,17 @@ st.write(f"**Geschwindigkeit nachher:** {v_neu:.2f} km/h")
 st.write(f"**Zeit vorher:** {zeit_alt:.1f} Minuten")
 st.write(f"**Zeit nachher:** {zeit_neu:.1f} Minuten")
 st.success(f"💡 Du sparst etwa **{ersparnis_min:.1f} Minuten** auf {strecke} km!")
+import matplotlib.pyplot as plt
+
+# Bereich: 150–300 Watt berechnen
+leistungen = list(range(150, 301, 10))
+geschwindigkeiten = [berechne_kmh(p, gewicht, cda) for p in leistungen]
+
+st.subheader("📉 Geschwindigkeit in Abhängigkeit von der Leistung")
+fig, ax = plt.subplots()
+ax.plot(leistungen, geschwindigkeiten, marker='o')
+ax.set_xlabel("Leistung (Watt)")
+ax.set_ylabel("Geschwindigkeit (km/h)")
+ax.set_title("Mehr Watt → mehr Speed")
+ax.grid(True)
+st.pyplot(fig)
